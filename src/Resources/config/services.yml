@@ -1,0 +1,5 @@
+services:
+    dyvelop_icalcreator.factory:
+        class: Dyvelop\ICalCreatorBundle\Factory\Factory
+        calls:
+            - [ setTimezone, ['%dyvelop_icalcreator.default_timezone%']]
