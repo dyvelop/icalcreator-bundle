@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dyvelop/icalcreator-bundle.svg?branch=master)](https://travis-ci.org/dyvelop/icalcreator-bundle)
+
 # Dyvelop iCalcreator Bundle
 
 This bundle provides some utilities for using the iCalcreator PHP library (http://kigkonsult.se/iCalcreator/index.php) in Symfony.
