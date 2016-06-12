@@ -13,7 +13,7 @@ before_install:
   - composer require "symfony/dependency-injection:${SYMFONY_VERSION}" --no-update
   - composer require "symfony/http-foundation:${SYMFONY_VERSION}" --no-update
   - composer require "symfony/http-kernel:${SYMFONY_VERSION}" --no-update
-  - composer require "symfony/yml:${SYMFONY_VERSION}" --no-update
+  - composer require "symfony/yaml:${SYMFONY_VERSION}" --no-update
 
 install:
   - composer update --prefer-source
