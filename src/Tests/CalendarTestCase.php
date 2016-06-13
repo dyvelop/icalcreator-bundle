@@ -24,4 +24,33 @@ abstract class CalendarTestCase extends \PHPUnit_Framework_TestCase
             array(new Calendar(array('format' => 'xcal'))),
         );
     }
+
+
+    /**
+     * Get calendar test config
+     *
+     * @return array
+     */
+    public function getCalendarConfigTestData()
+    {
+        return array(
+            array(array('format' => 'iCal', 'filename' => 'file.ics')),
+            array(array('format' => 'xCal', 'filename' => 'file.xml')),
+        );
+    }
+
+
+    /**
+     * Assert calendar configs
+     *
+     * @param array    $expected Expected configs
+     * @param Calendar $calendar Actual calendar
+     */
+    protected function assertCalendarConfigs($expected, $calendar)
+    {
+        $this->assertInstanceOf('Dyvelop\ICalCreatorBundle\Component\Calendar', $calendar);
+        foreach ($expected as $key => $value) {
+            $this->assertEquals($value, $calendar->getConfig($key));
+        }
+    }
 }
