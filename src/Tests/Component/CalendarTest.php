@@ -110,8 +110,8 @@ class CalendarTest extends CalendarTestCase
     public function getCalendarTimezoneTestData()
     {
         return array(
+            array('America/Chicago'),
             array('Europe/Berlin'),
-            array('UTC'),
         );
     }
 }
