@@ -58,13 +58,10 @@ class CalendarTest extends CalendarTestCase
 
     /**
      * Test setter for timezone
-     *
-     * @param string $timezone
-     *
-     * @dataProvider getCalendarTimezoneTestData
      */
-    public function testSetTimezone($timezone)
+    public function testSetTimezone()
     {
+        $timezone = 'Europe/Berlin';
         $calendar = new Calendar();
         $reflection = new \ReflectionObject($calendar);
         $attribute = $reflection->getProperty('timezone');
@@ -98,20 +95,6 @@ class CalendarTest extends CalendarTestCase
         return array(
             array(array('format' => 'iCal'), 'text/calendar'),
             array(array('format' => 'xCal'), 'application/calendar+xml'),
-        );
-    }
-
-
-    /**
-     * Get calendar timezone test data
-     *
-     * @return array
-     */
-    public function getCalendarTimezoneTestData()
-    {
-        return array(
-            array('America/Chicago'),
-            array('Europe/Berlin'),
         );
     }
 }
