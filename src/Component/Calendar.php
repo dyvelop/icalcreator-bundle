@@ -44,6 +44,19 @@ class Calendar extends \vcalendar
 
 
     /**
+     * Get event from calendar
+     *
+     * @param int $index
+     *
+     * @return \vevent|false
+     */
+    public function getEvent($index = 1)
+    {
+        return $this->getComponent('VEVENT', $index);
+    }
+
+
+    /**
      * Set timezone, when Non-UTC
      *
      * @see http://kigkonsult.se/iCalcreator/docs/using.html#createTimezone
