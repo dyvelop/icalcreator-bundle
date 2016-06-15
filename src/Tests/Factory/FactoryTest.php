@@ -73,4 +73,25 @@ class FactoryTest extends CalendarTestCase
         $attribute->setAccessible(true);
         $this->assertEquals($timezone, $attribute->getValue($calendar));
     }
+
+
+    /**
+     * Test add default configs and generating calendars with it
+     */
+    public function testAddDefaultConfig()
+    {
+        $reflection = new \ReflectionObject($this->factory);
+        $attribute = $reflection->getProperty('defaultConfig');
+        $attribute->setAccessible(true);
+
+        $config = array('unique_id' => 'MyUniqueCalendarId', 'format' => 'xCal');
+        foreach ($config as $name => $value) {
+            $this->factory->addDefaultConfig($name, $value);
+        }
+
+        $this->assertEquals($config, $attribute->getValue($this->factory));
+
+        $calendar = $this->factory->create();
+        $this->assertCalendarConfigs($config, $calendar);
+    }
 }

@@ -25,7 +25,8 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
 
         $rootNode->children()
-            ->scalarNode('default_timezone')->defaultNull();
+            ->scalarNode('default_unique_id')->defaultValue('DyvelopICalCreatorBundle')->end()
+            ->scalarNode('default_timezone')->defaultNull()->end();
 
         return $treeBuilder;
     }

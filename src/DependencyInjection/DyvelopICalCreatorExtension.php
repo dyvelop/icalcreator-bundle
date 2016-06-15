@@ -23,6 +23,7 @@ class DyvelopICalCreatorExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('dyvelop_icalcreator.default_timezone', $config['default_timezone']);
+        $container->setParameter('dyvelop_icalcreator.default_unique_id', $config['default_unique_id']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

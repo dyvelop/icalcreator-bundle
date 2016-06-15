@@ -2,4 +2,5 @@ services:
     dyvelop_icalcreator.factory:
         class: Dyvelop\ICalCreatorBundle\Factory\Factory
         calls:
+            - [ addDefaultConfig, ['unique_id', '%dyvelop_icalcreator.default_unique_id%']]
             - [ setTimezone, ['%dyvelop_icalcreator.default_timezone%']]
