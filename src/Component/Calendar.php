@@ -11,6 +11,12 @@ namespace Dyvelop\ICalCreatorBundle\Component;
  */
 class Calendar extends \vcalendar
 {
+
+    /**
+     * Default date format for converting DateTime objects
+     */
+    const DATE_FORMAT = 'Y/m/d H:i:s';
+
     /**
      * @var string
      */
