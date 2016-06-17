@@ -52,6 +52,15 @@ class AppKernel extends Kernel
 
 ## Configuration
 
+### Unique ID
+
+You can change the default [unique ID](http://kigkonsult.se/iCalcreator/docs/using.html#Unique_id) for calendars with following configuration.
+
+```yml
+dyvelop_icalcreator:
+    default_unique_id: DyvelopICalCreatorBundle
+```
+
 ### Timezone
 
 If you want to create calendar events in a timezone with [daylight saving time](https://en.wikipedia.org/wiki/Daylight_saving_time) (or summer time), you can set a default timezone globally via config:
