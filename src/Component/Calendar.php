@@ -18,6 +18,13 @@ class Calendar extends \vcalendar
     const DATE_FORMAT = 'Y/m/d H:i:s';
 
     /**
+     * Event status types
+     */
+    const EVENT_STATUS_TENTATIVE = 'TENTATIVE';
+    const EVENT_STATUS_CONFIRMED = 'CONFIRMED';
+    const EVENT_STATUS_CANCELLED = 'CANCELLED';
+
+    /**
      * @var string
      */
     protected $timezone;
