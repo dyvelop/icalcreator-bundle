@@ -14,17 +14,7 @@ Download via [Composer](https://getcomposer.org/)
 composer require dyvelop/icalcreator-bundle
 ```
 
-This project requires the packagist distribution from https://github.com/iCalcreator/iCalcreator which is currently only available in the `dev-master` branch. (which is equals to version 2.22 from http://kigkonsult.se/iCalcreator/index.php)
-Because there isn't any tagged version yet, you may need to change the minimal stability to "dev" in the `composer.json` of your Symfony project:
-
-```
-{
-  ...
-  "minimum-stability": "dev"
-}
-```
-
-See  [iCalcreator/iCalcreator#7](https://github.com/iCalcreator/iCalcreator/issues/7) and [iCalcreator/iCalcreator#21](https://github.com/iCalcreator/iCalcreator/issues/21) for more information...
+This project requires the packagist distribution from https://github.com/iCalcreator/iCalcreator in version 2.22.
 
 ### Step 2: Enable Bundle
 

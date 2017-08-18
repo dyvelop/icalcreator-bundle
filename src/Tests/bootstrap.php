@@ -6,3 +6,9 @@ if (!file_exists($file)) {
 }
 
 $autoload = require_once $file;
+
+if (!class_exists('PHPUnit_Framework_TestCase')) {
+    class PHPUnit_Framework_TestCase extends \PHPUnit\Framework\TestCase
+    {
+    }
+}
