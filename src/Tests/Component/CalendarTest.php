@@ -92,6 +92,18 @@ class CalendarTest extends CalendarTestCase
 
 
     /**
+     * Test line endings of description
+     */
+    public function testDescriptionLineEndings()
+    {
+        $calendar = new Calendar();
+        $event = $calendar->newEvent();
+        $event->setDescription("Some description\r\nwith invalid line endings.");
+        $this->assertEquals("Some description\nwith invalid line endings.", $event->getProperty('DESCRIPTION'));
+    }
+
+
+    /**
      * Get calendar test config
      *
      * @return array
