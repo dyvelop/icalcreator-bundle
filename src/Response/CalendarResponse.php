@@ -31,7 +31,13 @@ class CalendarResponse extends Response
     public function __construct(Calendar $calendar, $status = 200, $headers = array())
     {
         $this->calendar = $calendar;
-        $content = utf8_encode($calendar->createCalendar());
+
+        // convert to UTF-8
+        $content = $calendar->createCalendar();
+        if (!mb_check_encoding($content, 'UTF-8')) {
+            $content = utf8_encode($content);
+        }
+
         $headers = array_merge($this->getDefaultHeaders(), $headers);
         parent::__construct($content, $status, $headers);
     }
