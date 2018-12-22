@@ -1,8 +1,10 @@
 <?php
+
 namespace Dyvelop\ICalCreatorBundle\Tests\Component;
 
 use Dyvelop\ICalCreatorBundle\Component\Calendar;
 use Dyvelop\ICalCreatorBundle\Tests\CalendarTestCase;
+use kigkonsult\iCalcreator\util\util;
 
 /**
  * Tests for calendar component
@@ -51,8 +53,12 @@ class CalendarTest extends CalendarTestCase
         $this->assertEmpty($calendar->getComponent('vevent'));
 
         $event = $calendar->newEvent();
-        $this->assertInstanceOf('vevent', $event);
-        $this->assertEquals($event, $calendar->getComponent('vevent'));
+        $this->assertInstanceOf('kigkonsult\iCalcreator\vevent', $event);
+
+        $event->setProperty(util::$DESCRIPTION, 'Some event description');
+
+        $expected = $calendar->getComponent('vevent');
+        $this->assertEquals('Some event description', $expected->getProperty(util::$DESCRIPTION));
     }
 
 
@@ -81,7 +87,7 @@ class CalendarTest extends CalendarTestCase
 
         // check timezone component
         $calendar->createCalendar();
-        $this->assertInstanceOf('vtimezone', $calendar->getComponent('vtimezone'));
+        $this->assertInstanceOf('kigkonsult\iCalcreator\vtimezone', $calendar->getComponent('vtimezone'));
     }
 
 
@@ -92,9 +98,9 @@ class CalendarTest extends CalendarTestCase
      */
     public function getCalendarContentTypeTestData()
     {
-        return array(
-            array(array('format' => 'iCal'), 'text/calendar'),
-            array(array('format' => 'xCal'), 'application/calendar+xml'),
-        );
+        return [
+            [['format' => 'iCal'], 'text/calendar'],
+            [['format' => 'xCal'], 'application/calendar+xml'],
+        ];
     }
 }

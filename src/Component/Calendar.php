@@ -2,6 +2,11 @@
 
 namespace Dyvelop\ICalCreatorBundle\Component;
 
+use kigkonsult\iCalcreator\timezoneHandler;
+use kigkonsult\iCalcreator\util\util;
+use kigkonsult\iCalcreator\vcalendar;
+use kigkonsult\iCalcreator\vevent;
+
 /**
  * Calendar component
  * Extends original vCalendar component with some utility functions
@@ -9,7 +14,7 @@ namespace Dyvelop\ICalCreatorBundle\Component;
  * @package Dyvelop\ICalCreatorBundle\Component
  * @author  Franziska Dyckhoff <fdyckhoff@dyvelop.de>
  */
-class Calendar extends \vcalendar
+class Calendar extends vcalendar
 {
 
     /**
@@ -29,6 +34,38 @@ class Calendar extends \vcalendar
      */
     protected $timezone;
 
+    /**
+     * @var string
+     */
+    protected $format;
+
+    /**
+     * Calendar constructor.
+     *
+     * @param array $config
+     */
+    public function __construct($config = [])
+    {
+        parent::__construct($config);
+        if (null === $this->format && isset($config['format'])) {
+            $this->format = $config['format'];
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfig($config = null)
+    {
+        if (null !== $config) {
+            $config = strtoupper($config);
+            if ($config === 'FORMAT') {
+                return $this->format;
+            }
+        }
+
+        return parent::getConfig($config);
+    }
 
     /**
      * Get content type
@@ -37,7 +74,7 @@ class Calendar extends \vcalendar
      */
     public function getContentType()
     {
-        if ($this->format == 'xcal') {
+        if ($this->format == 'xCal') {
             return 'application/calendar+xml';
         } else {
             return 'text/calendar';
@@ -48,11 +85,11 @@ class Calendar extends \vcalendar
     /**
      * Create new event for calendar
      *
-     * @return \vevent
+     * @return vevent
      */
     public function newEvent()
     {
-        return $this->newComponent('VEVENT');
+        return $this->newComponent(util::$LCVEVENT);
     }
 
 
@@ -61,11 +98,11 @@ class Calendar extends \vcalendar
      *
      * @param int $index
      *
-     * @return \vevent|false
+     * @return vevent|false
      */
     public function getEvent($index = 1)
     {
-        return $this->getComponent('VEVENT', $index);
+        return $this->getComponent(util::$LCVEVENT, $index);
     }
 
 
@@ -96,8 +133,8 @@ class Calendar extends \vcalendar
     {
         // add timezone component
         if ($this->timezone && $this->getComponent('VTIMEZONE') === false) {
-            $xprops = array('X-LIC-LOCATION' => $this->timezone);
-            \iCalUtilityFunctions::createTimezone($this, $this->timezone, $xprops);
+            $xprops = ['X-LIC-LOCATION' => $this->timezone];
+            timezoneHandler::createTimezone($this, $this->timezone, $xprops);
         }
 
         return parent::createCalendar();
