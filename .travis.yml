@@ -1,41 +1,43 @@
 language: php
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
+    - 5.4
+    - 5.5
+    - 5.6
+    - 7.0
+    - 7.1
+    - 7.2
 
 env:
-  - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=2.3.*
-  - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=2.7.*
-  - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=2.8.*
-  - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.0.*
-  - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.1.*
-  - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.2.*
-  - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.3.*
+    - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=2.3.*
+    - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=2.7.*
+    - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=2.8.*
+    - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.0.*
+    - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.1.*
+    - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.2.*
+    - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.3.*
+    - ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.4.*
 
 matrix:
-  exclude:
-    - php: 5.4
-      env: ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.0.*
-    - php: 5.4
-      env: ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.1.*
-    - php: 5.4
-      env: ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.2.*
-    - php: 5.4
-      env: ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.3.*
+    exclude:
+        -   php: 5.4
+            env: ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.0.*
+        -   php: 5.4
+            env: ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.1.*
+        -   php: 5.4
+            env: ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.2.*
+        -   php: 5.4
+            env: ICALCREATOR_VERSION=2.22.* SYMFONY_VERSION=3.3.*
 
 before_install:
-  - composer require "kigkonsult/icalcreator:${ICALCREATOR_VERSION}" --no-update
-  - composer require "symfony/config:${SYMFONY_VERSION}" --no-update
-  - composer require "symfony/dependency-injection:${SYMFONY_VERSION}" --no-update
-  - composer require "symfony/http-foundation:${SYMFONY_VERSION}" --no-update
-  - composer require "symfony/http-kernel:${SYMFONY_VERSION}" --no-update
-  - composer require "symfony/yaml:${SYMFONY_VERSION}" --no-update
+    - composer require "kigkonsult/icalcreator:${ICALCREATOR_VERSION}" --no-update
+    - composer require "symfony/config:${SYMFONY_VERSION}" --no-update
+    - composer require "symfony/dependency-injection:${SYMFONY_VERSION}" --no-update
+    - composer require "symfony/http-foundation:${SYMFONY_VERSION}" --no-update
+    - composer require "symfony/http-kernel:${SYMFONY_VERSION}" --no-update
+    - composer require "symfony/yaml:${SYMFONY_VERSION}" --no-update
 
 install:
-  - composer update --prefer-source
+    - composer update --prefer-source
 
 script:
-  - vendor/bin/phpunit --coverage-text
+    - vendor/bin/phpunit --coverage-text
